@@ -1,8 +1,25 @@
+import os
+import time
 import pandas as pd
 import numpy as np
-import time
-import os
 
+def time_it(func):
+    def wrapper(*args, **kwargs):
+        print("-----------------\n")
+        start_time = time.time()  # Record the start time
+        result = func(*args, **kwargs)  # Call the actual function
+        end_time = time.time()  # Record the end time
+        print(f"Execution time: {end_time - start_time:.4f} seconds")
+        print("\n-----------------\n")
+        return result
+    return wrapper
+
+def print_parameters(num_chunks, num_rows, num_columns, is_parallel):
+    print("Parameters:")
+    print(f"Number of Chunks: {num_chunks}")
+    print(f"Number of Rows per Chunk: {num_rows}")
+    print(f"Number of Columns per Chunk: {num_columns}")
+    print(f"Is parallel: {is_parallel}")
 
 def remove_all_files(folder_path):
     if os.path.exists(folder_path) and os.path.isdir(folder_path):
@@ -29,18 +46,3 @@ def create_random_chunks(i_chunck, num_rows, num_columns, output_dir):
     file_name = os.path.join(output_dir, f'chunk_{i_chunck}.csv')
     # Write the DataFrame to a CSV file
     df.to_csv(file_name, index=False)
-
-
-if __name__ == "__main__":
-    output_dir = "data_chunks"
-    num_chunks = 1000  # Number of chunks
-    num_rows = 1000  # Number of rows in each chunk
-    num_columns = 100  # Number of columns
-    
-    remove_all_files(output_dir)
-    start_time = time.time()
-    for i in range(1, num_chunks + 1):
-        create_random_chunks(i, num_rows, num_columns, output_dir)
-    end_time = time.time()
-    elapsed_time = end_time - start_time
-    print(f'Total chunks created and written in {elapsed_time:.4f} seconds')
