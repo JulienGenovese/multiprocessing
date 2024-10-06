@@ -33,7 +33,6 @@ if __name__ == "__main__":
     print("Type of writing: ", main_to_run, "\n")
     
     if main_to_run == "parallel":
-        remove_all_files(output_dir)
         main_parallel(
             output_dir=output_dir, 
             num_chunks=num_chunks,
