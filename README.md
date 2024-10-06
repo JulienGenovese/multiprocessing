@@ -1,4 +1,9 @@
-# How to Read This Repository
+
+# Concurrent writing in python
+
+<img src="docs/images1.webp" alt="Alt text" width="500"/>
+
+## Introduction
 
 This mini-project demonstrates how to use a multiprocessing library to compare the performance of I/O processes when writing chunks of data. The aim is to evaluate the differences between concurrent writing (using the `concurrent` library) and serial writing.
 
@@ -31,3 +36,7 @@ To run this project, ensure you have the following libraries installed:
 
 - Pandas
 - NumPy
+
+## Source
+
+- [Python Multiprocessing Tutorial](https://www.youtube.com/watch?v=fKl2JW_qrso&t=2277s)
